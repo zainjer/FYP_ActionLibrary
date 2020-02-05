@@ -27,8 +27,7 @@ namespace FYP_ActionLibrary
         void myMain()
         {
             Console.WriteLine("---This is action library---");
-        
-              
+
             //writes dr. mansoor
             
 //            Keyboard_Key_D(KeyPress);
@@ -42,8 +41,7 @@ namespace FYP_ActionLibrary
 //            Keyboard_Key_O(KeyPress);
 //            Keyboard_Key_O(KeyPress);
 //            Keyboard_Key_R(KeyPress);
-           
-         
+
 
             //writes Dr. Mansoor
             Keyboard_Key_SHIFT(KeyDown);
@@ -62,8 +60,11 @@ namespace FYP_ActionLibrary
             Keyboard_Key_O(KeyPress);
             Keyboard_Key_R(KeyPress);
             
+            
+            // system_LockScreen();
+            
         }
-
+        
         #region Windows Programs and Utilities Methods
         public void start_Explorer() { Program_Start("Explorer"); }
         public void start_TaskManager() { Program_Start("taskmgr"); }
@@ -81,14 +82,12 @@ namespace FYP_ActionLibrary
         public void start_CleanManager(){ Program_Start("cleanmgr");}
         public void start_SystemProperties(){ Program_Start("sysdm.cpl");}
         #endregion
-        
         #region browser Methods
         public void start_chrome() { Program_Start("chrome"); }
         public void start_firefox() { Program_Start("firefox"); }
         public void start_InternetExplorer() { Program_Start("iexplore"); }
         public void start_EdgeBrowser() {Program_Start("microsoft-edge:");}
         #endregion
-        
         #region System Methods
         [DllImport("user32")]
         public static extern void LockWorkStation();  //For locking screen
@@ -103,7 +102,6 @@ namespace FYP_ActionLibrary
         public void system_Shutdown() { Process.Start("shutdown","/s /t 0"); }
         public void system_Restart() { Process.Start("shutdown", "/r /t 0");}
         #endregion
-
         #region Keyboard Input Methods
         
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
@@ -715,7 +713,6 @@ namespace FYP_ActionLibrary
         #endregion
         
         #endregion
-
         #region Mouse Input Methods
 
         public void Mouse_Key_LEFT(int option)
@@ -741,18 +738,13 @@ namespace FYP_ActionLibrary
             else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.MBUTTON);}
             else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
         }
-
-
         #endregion
-        
         public void Program_Start(string processName)
         {
             var x = new ThreadManager(processName);
             Thread t = new Thread(x.StartProcess_String);
             t.Start();
         }
-        
-        
     }
     public class ThreadManager
     {
