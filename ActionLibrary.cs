@@ -27,9 +27,41 @@ namespace FYP_ActionLibrary
         void myMain()
         {
             Console.WriteLine("---This is action library---");
+        
+              
+            //writes dr. mansoor
+            
+//            Keyboard_Key_D(KeyPress);
+//            Keyboard_Key_R(KeyPress);
+//            Keyboard_Key_DECIMAL(KeyPress);
+//            Keyboard_Key_SPACE(KeyPress);
+//            Keyboard_Key_M(KeyPress);
+//            Keyboard_Key_A(KeyPress);
+//            Keyboard_Key_N(KeyPress);
+//            Keyboard_Key_S(KeyPress);
+//            Keyboard_Key_O(KeyPress);
+//            Keyboard_Key_O(KeyPress);
+//            Keyboard_Key_R(KeyPress);
+           
+         
+
+            //writes Dr. Mansoor
+            Keyboard_Key_SHIFT(KeyDown);
+            Keyboard_Key_D(KeyPress);
+            Keyboard_Key_SHIFT(KeyUp);
+            Keyboard_Key_R(KeyPress);
+            Keyboard_Key_DECIMAL(KeyPress);
+            Keyboard_Key_SPACE(KeyPress);
+            Keyboard_Key_SHIFT(KeyDown);
+            Keyboard_Key_M(KeyPress);
+            Keyboard_Key_SHIFT(KeyUp);
             Keyboard_Key_A(KeyPress);
-            Keyboard_Key_A(KeyDown);
-            Keyboard_Key_APPS(KeyPress);
+            Keyboard_Key_N(KeyPress);
+            Keyboard_Key_S(KeyPress);
+            Keyboard_Key_O(KeyPress);
+            Keyboard_Key_O(KeyPress);
+            Keyboard_Key_R(KeyPress);
+            
         }
 
         #region Windows Programs and Utilities Methods
@@ -73,19 +105,26 @@ namespace FYP_ActionLibrary
         #endregion
 
         #region Keyboard Input Methods
-
-        
-
         
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName,
             string lpWindowName);
 
-// Activate an application window.
+        // Activate an application window.
         [DllImport("USER32.DLL")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
         // Get a handle to an application window.
+
+        #region AlphaNumeric and Typing Keys
         
+        
+        public void Keyboard_Key_DECIMAL(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DECIMAL); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.DECIMAL);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.DECIMAL);}
+            else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+        }
         public void Keyboard_Key_0(int option)
         {
             if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.VK_0); }
@@ -345,8 +384,11 @@ namespace FYP_ActionLibrary
             else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SPACE);}
             else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
         }
-        
-        public void Keyboard_Key_UP(int option)
+        #endregion
+
+        #region Function Keys
+
+          public void Keyboard_Key_UP(int option)
         {
             if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.UP); }
             else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.UP);}
@@ -463,6 +505,14 @@ namespace FYP_ActionLibrary
             else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.CAPITAL);}
             else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
         }
+        
+        public void Keyboard_Key_TAB(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.TAB); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.TAB);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.TAB);}
+            else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+        }
         public void Keyboard_Key_NUMLOCK(int option)
         {
             if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.NUMLOCK); }
@@ -477,17 +527,63 @@ namespace FYP_ActionLibrary
             else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SNAPSHOT);}
             else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
         }
-        public void Keyboard_Key_APPS(int option)
+        public void Keyboard_Key_PAUSE(int option)
         {
-            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.APPS); }
-            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.APPS);}
-            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.APPS);}
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.PAUSE); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.PAUSE);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.PAUSE);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_SCROLLLOCK(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SCROLL); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.SCROLL);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SCROLL);}
             else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
         }
         
-        
-        
-        
+        public void Keyboard_Key_INSERT(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.INSERT); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.INSERT);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.INSERT);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_DELETE(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DELETE); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.DELETE);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.DELETE);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_HOME(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.HOME); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.HOME);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.HOME);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_END(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.END); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.END);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.END);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_PAGEUP(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.PRIOR); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.PRIOR);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.PRIOR);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        public void Keyboard_Key_PAGEDOWN(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.NEXT); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.NEXT);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.NEXT);}
+            else { Console.WriteLine("invaild KeyEvent opton. please use KeyPress, KeyDown or KeyUp"); }
+        }
         
         public void Keyboard_Key_ESC(int option)
                 {
@@ -582,8 +678,71 @@ namespace FYP_ActionLibrary
         }        
 
         
+        #endregion
+
+        #region Arithematic Operations Keys
+
+          public void Keyboard_Key_DIVIDE(int option)
+                {
+                    if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DIVIDE); }
+                    else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.DIVIDE);}
+                    else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.DIVIDE);}
+                    else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+                }
+          
+          public void Keyboard_Key_MULTIPLY(int option)
+          {
+              if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.MULTIPLY); }
+              else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.MULTIPLY);}
+              else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.MULTIPLY);}
+              else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+          }
+          public void Keyboard_Key_ADD(int option)
+          {
+              if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.ADD); }
+              else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ADD);}
+              else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ADD);}
+              else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+          }
+          public void Keyboard_Key_SUBTRACT(int option)
+          {
+              if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.SUBTRACT); }
+              else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.SUBTRACT);}
+              else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.SUBTRACT);}
+              else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+          }
+          
+        #endregion
         
+        #endregion
+
+        #region Mouse Input Methods
+
+        public void Mouse_Key_LEFT(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Mouse.LeftButtonClick();}
+            else if (option == KeyDown) { inputSimulator.Mouse.LeftButtonDown();}
+            else if (option == KeyUp) { inputSimulator.Mouse.LeftButtonUp();}
+            else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+        }
         
+        public void Mouse_Key_RIGHT(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Mouse.RightButtonClick(); }
+            else if (option == KeyDown) { inputSimulator.Mouse.RightButtonDown();}
+            else if (option == KeyUp) { inputSimulator.Mouse.RightButtonUp();}
+            else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+        }
+        
+        public void Mouse_Key_MIDDLE(int option)
+        {
+            if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.MBUTTON); }
+            else if (option == KeyDown) { inputSimulator.Keyboard.KeyDown(VirtualKeyCode.MBUTTON);}
+            else if (option == KeyUp) { inputSimulator.Keyboard.KeyUp(VirtualKeyCode.MBUTTON);}
+            else { Console.WriteLine("invaild KeyEvent option. please use KeyPress, KeyDown or KeyUp"); }
+        }
+
+
         #endregion
         
         public void Program_Start(string processName)
