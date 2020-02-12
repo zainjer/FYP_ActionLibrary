@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -10,7 +11,6 @@ namespace FYP_ActionLibrary
 {
     internal class ActionLibrary
     {
-        
         //Constants for checking Key event type
         public static int KeyPress = 0;
         public static int KeyDown = 1;
@@ -24,26 +24,65 @@ namespace FYP_ActionLibrary
             ActionLibrary x = new ActionLibrary();
             x.myMain();
         }
+        [DllImport("user32.dll", CharSet=CharSet.Auto,ExactSpelling=true)]
+        public static extern IntPtr SetFocus(HandleRef hWnd);
+        
+        [DllImport("user32.dll" ,EntryPoint = "FindWindow", SetLastError = true)]
+        public static extern IntPtr FindWindow(IntPtr zeroOnly, string lpWindowName);
+        
+        static void BringWindowToFront(Process myProcess)
+        {
+            var currentProcess = myProcess;
+            var processes = Process.GetProcessesByName(currentProcess.ProcessName);
+            var process = processes.FirstOrDefault(p => p.Id!=currentProcess.Id);
+            if (process == null) return;
+            SetForegroundWindow(process.MainWindowHandle);
+           //SetFocus(new HandleRef(null, myProcess.MainWindowHandle));
+        }
         void myMain()
         {
-            Console.WriteLine("---This is action library---");
-
-            //writes dr. mansoor
             
-//            Keyboard_Key_D(KeyPress);
-//            Keyboard_Key_R(KeyPress);
-//            Keyboard_Key_DECIMAL(KeyPress);
-//            Keyboard_Key_SPACE(KeyPress);
-//            Keyboard_Key_M(KeyPress);
-//            Keyboard_Key_A(KeyPress);
-//            Keyboard_Key_N(KeyPress);
-//            Keyboard_Key_S(KeyPress);
-//            Keyboard_Key_O(KeyPress);
-//            Keyboard_Key_O(KeyPress);
-//            Keyboard_Key_R(KeyPress);
-
+            Console.WriteLine("---This is action library---");
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//            var processlist = Process.GetProcesses();
+//            foreach (var x in processlist)
+//            {
+//                try
+//                {
+//                    if(!String.IsNullOrWhiteSpace(x.MainWindowTitle))
+//                        Console.WriteLine($" {x.Id}  {x.ProcessName} {x.MainWindowHandle}  {x.MainWindowTitle}");
+//                }
+//                catch (Exception ex)
+//                {
+//                    Console.WriteLine(ex.Message);
+//                }
+//            }
+//            Console.WriteLine("\n\n\n\n");
+//            var ins = Console.ReadLine();
+//            Process p = new Process();
+//            int inin;
+//            if (Int32.TryParse(ins, out inin))
+//            {
+//                //Console.WriteLine(processlist[inin].MainWindowHandle);
+//                 p = Process.GetProcessById(inin);
+//                Console.WriteLine(p.MainWindowTitle);
+//                BringWindowToFront(p);
+//            }
+//            else
+//            {
+//                Console.Clear();
+//                Console.WriteLine("Try again bro");
+//                myMain();
+//            }
 
             //writes Dr. Mansoor
+    //        BringWindowToFront(p);
+
+
+
+    IntPtr pointer = FindWindow(new IntPtr(0), "Untitled - Notepad");
+    SetForegroundWindow(pointer);
             Keyboard_Key_SHIFT(KeyDown);
             Keyboard_Key_D(KeyPress);
             Keyboard_Key_SHIFT(KeyUp);
@@ -60,9 +99,16 @@ namespace FYP_ActionLibrary
             Keyboard_Key_O(KeyPress);
             Keyboard_Key_R(KeyPress);
             
+          //  start_With_Path(@"C:\Users\Areeb\Desktop\deisgn issues and notes.txt");
             
-            // system_LockScreen();
+          //  system_LockScreen();
             
+        }
+
+        public void start_With_Path(string path)
+        {
+            Program_Start(path);
+            string [][] x;
         }
         
         #region Windows Programs and Utilities Methods
@@ -104,9 +150,7 @@ namespace FYP_ActionLibrary
         #endregion
         #region Keyboard Input Methods
         
-        [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
-        public static extern IntPtr FindWindow(string lpClassName,
-            string lpWindowName);
+       
 
         // Activate an application window.
         [DllImport("USER32.DLL")]
